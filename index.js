@@ -6,7 +6,10 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
+const catalogRoutes = require("./routes/catalogRoutes");
 const userRoutes = require("./routes/userRoutes");
+const cartRoutes = require("./routes/cartRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 const publicPath = path.join(__dirname, "..", "frontend", "public");
 const port = process.env.PORT || 5000;
@@ -53,6 +56,9 @@ app.use(
 app.use(express.static(publicPath));
 
 app.use("/api/auth", authRoutes);
+app.use("/api/catalog", catalogRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/order", orderRoutes);
 
 app.listen(port, () => console.log(`SERVER NOW RUNNING ON PORT ${port}...`));
