@@ -11,6 +11,8 @@ const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 
+const seed = require("./seeds/products");
+
 const publicPath = path.join(__dirname, "..", "frontend", "public");
 const port = process.env.PORT || 5000;
 
@@ -60,5 +62,9 @@ app.use("/api/catalog", catalogRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/order", orderRoutes);
+app.get("/seed", (req, res) => {
+  seed();
+  res.send("success");
+});
 
 app.listen(port, () => console.log(`SERVER NOW RUNNING ON PORT ${port}...`));
