@@ -44,7 +44,7 @@ router.post("/auth/register", async ({ body }, res) => {
 
   try {
     if (key !== process.env.PRIVATE_KEY) {
-      return res.status(400).send({ message: "Private key required" });
+      return res.status(400).send({ message: "Private key required" + process.env.PRIVATE_KEY });
     }
     if (!username) {
       return res.status(400).send({ message: "username required" });
